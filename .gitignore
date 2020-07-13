@@ -1,0 +1,5 @@
+# игнорирование каталогов и файлов
+/package-loc
+/.vs
+/node_modules
+/public

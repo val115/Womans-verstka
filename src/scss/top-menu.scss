@@ -1,0 +1,144 @@
+@import "partials/params";
+@import "partials/mixins";
+
+#top-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 90%;
+
+  background: linear-gradient(180deg, $hover-bg, $gradient-bg-2, $hover-bg);
+  border-bottom: 3px solid $gradient-bg-1;
+  border-top: 1px solid $bg-color;
+  // ----------------------
+  & .search {
+    flex-basis: 40%;
+
+    //border: 1px solid red;
+    & form {
+      padding: 7px 0 7px 20px;
+
+      & .text-search {
+        font-size: 16px;
+        border-radius: 5px;
+        padding: 5px;
+      }
+
+      & .search-submit {
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+    }
+  }
+  // ------------------------
+  & .main-menu {
+    flex-basis: 60%;
+    display: flex;
+    margin-right: 20px;
+
+    & .menu-item {
+      flex-basis: 30%;
+      list-style: none;
+      text-align: center;
+      border-right: 2px solid $bg-block-color;
+
+      &:last-child {
+        //border: 1px solid red;
+        border-right: none;
+      }
+
+      & .menu-link {
+        text-decoration: none;
+        border: 3px solid $gradient-bg-1;
+        border-radius: 10px;
+        //padding:2px 15px 2px 15px;
+        color: $font-main-color;
+        font-size: 0px;
+        line-height: 5px;
+        display: block;
+        padding: 10px 0;
+        background-color: $hover-bg ;
+        position: relative;
+
+        // ------вращение меню
+        &::before {
+          content: attr(data-name2);
+          position: absolute;
+          font-size: 18px;
+          left: 0;
+          top: 0;
+          width: 100%;
+          padding: 10px 0;
+          background-color: $hover-bg; 
+          transform: rotateX(90deg) translateY(50px);
+        //   /*значение bottom*/
+          transform-origin: 50% 100%;
+
+          transition-duration: 500ms;
+          transition-property: transform;
+        }
+
+        // --------------------
+        &:hover::before {
+          transform: rotateX(0deg) translateY(0px);
+        //   /*значение top*/
+        }
+
+        &::after {
+          content: attr(data-name);
+          position: absolute;
+          font-size: 18px;
+          left: 0;
+          top: 0;
+          width: 100%;
+          padding: 10px 0;
+          background: linear-gradient(180deg, $hover-bg, $gradient-bg-2, $hover-bg);
+          background-color: #000;
+          transform: rotateX(0deg) translateY(0px);
+          // /*значение top*/
+          transform-origin: 50% 0%;
+
+          transition-duration: 500ms;
+          transition-property: transform;
+        }
+
+        &:hover::after {
+          transform: rotateX(90deg) translateY(-50px);
+  //         /*значение top*/
+        }
+         
+      } //menu-linc
+
+    } //menu-item    
+  } //main-menu
+
+}
+
+@media screen and (max-width:800px) {
+  #top-menu {
+    flex-direction: column;
+    height: 95%;
+
+    & .main-menu {
+      width: 100%;
+      margin-top: 0px;
+
+      & .menu-item {
+        flex-basis: 23%;
+
+        //border: 1px solid red;
+        & .menu-link {
+          &::before {
+            font-size: 15px;
+          }
+
+          &::after {
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
+}
